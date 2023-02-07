@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define equivalents(A, B) abs(A[strlen(A) - 1] - B[0]) == 32
+#define equivalents(A, B) (abs(A[strlen(A) - 1] - B[0]) == 32)
 typedef char * Item;
 typedef struct node {Item value; struct node * next;} Node;
 typedef struct linked_list { Node * begin, * end; int used;} LinkedQueue;
@@ -14,6 +14,7 @@ Item dequeue(LinkedQueue * l){
     Item temp = malloc(sizeof(char) * 27);
     Node * rem = l->begin;
     strcpy(temp, l->begin->value);
+    l->used--;
     l->begin = l->begin->next;
     free(rem);
     return temp;
@@ -37,14 +38,14 @@ int main(void){
     char word[27], ref[27] = "";
     LinkedQueue standby;
     initialize(&standby);
-    while(scanf("%s", word) != EOF){
-        if(!equivalents(word, ref)){
+    while(scanf("%s", word) == 1){
+        if(!equivalents(ref, word)){
             printf("%s\n", word);
             strcpy(ref, word);
         } else enqueue(&standby, word);
     }
     while(!is_empty(&standby)){
-        if(!equivalents(first_in(&standby), ref)){
+        if(!equivalents(ref, first_in(&standby))){
             printf("%s\n", first_in(&standby));
             strcpy(ref, dequeue(&standby));
         } else enqueue(&standby, dequeue(&standby));
