@@ -36,18 +36,27 @@ void enqueue(LinkedQueue * l, Item value){
 
 int main(void){
     char word[27], ref[27] = "";
+    int flag = 0;
     LinkedQueue standby;
     initialize(&standby);
     while(scanf("%s", word) == 1){
-        if(!equivalents(ref, word)){
+        if(!equivalents(ref, word) || (equivalents(ref, word) && flag == 1)){
             printf("%s\n", word);
             strcpy(ref, word);
-        } else enqueue(&standby, word);
+            flag = 0;
+        } else{
+            enqueue(&standby, word);
+            flag = 1;
+        }
     }
     while(!is_empty(&standby)){
-        if(!equivalents(ref, first_in(&standby))){
+        if(!equivalents(ref, first_in(&standby)) || (equivalents(ref, word) && flag == 1)){
             printf("%s\n", first_in(&standby));
             strcpy(ref, dequeue(&standby));
-        } else enqueue(&standby, dequeue(&standby));
+            flag = 0;
+        } else {
+            enqueue(&standby, dequeue(&standby));
+            flag = 1;
+        }
     }
 }

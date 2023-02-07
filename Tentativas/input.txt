@@ -1,10 +1,4 @@
-Rondonopolis
-Mirandopolis
-Salete
-Itaituba
-Imperatriz
-Zacarias
-Manaus
-SaoJoao
-Ocara
-Aracatuba
+Ra
+Aaab
+Aaac
+Aaab
