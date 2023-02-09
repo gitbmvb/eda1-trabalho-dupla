@@ -17,11 +17,10 @@ int main(){
 
     for (int i = 0; i < n-1; i++)
     {
-        if(carros[i] > carros[i+1]){sideStreet[countS++] = carros[i];}
-        else if(carros[i] > sideStreet[countS]){
+        if(carros[i] > sideStreet[countS]){
             finalOrder[countF++] = sideStreet[countS--];
             sideStreet[countS++] = carros[i];    
-        }
+        }else if(carros[i] > carros[i+1]){sideStreet[countS++] = carros[i];}
         else{finalOrder[countF++] = carros[i];}
     }
     
