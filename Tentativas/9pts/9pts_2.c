@@ -3,8 +3,8 @@
 #include <string.h>
 #define equivalents(A, B) (abs(A[strlen(A) - 1] - B[0]) == 32)
 typedef char * Item;
-typedef struct node {Item value; struct node * next;} Node;
-typedef struct linked_list { Node * begin, * end; int used;} LinkedQueue;
+typedef struct node {Item value; struct node * next;} Item;
+typedef struct linked_list { Item * begin, * end; int used;} LinkedQueue;
 
 void initialize(LinkedQueue * l){ l->begin = NULL; l->end = NULL; l->used = 0; }
 Item first_in(LinkedQueue * l){ return l->begin->value; }
@@ -12,7 +12,7 @@ int is_empty(LinkedQueue * l) { return l->used == 0;}
 
 Item dequeue(LinkedQueue * l){
     Item temp = malloc(sizeof(char) * 27);
-    Node * rem = l->begin;
+    Item * rem = l->begin;
     strcpy(temp, l->begin->value);
     l->used--;
     l->begin = l->begin->next;
@@ -21,7 +21,7 @@ Item dequeue(LinkedQueue * l){
 }
 
 void enqueue(LinkedQueue * l, Item value){
-    Node * new = malloc(sizeof(Node));
+    Item * new = malloc(sizeof(Item));
     new->value = malloc(sizeof(char) * 27);
     new->next = NULL;
     strcpy(new->value, value);

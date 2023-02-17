@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #define equals(A, B) strcmp(A, B) == 0
-typedef struct node { char * phrase; struct node * next;} Node;
-typedef struct linked_stack { Node * head;} LinkedStack;
+typedef struct node { char * phrase; struct node * next;} Item;
+typedef struct linked_stack { Item * head;} LinkedStack;
 
 void initialize(LinkedStack * l){ l->head = NULL;}
 
 void put_it_on(LinkedStack * l, char * phrase){
-    Node * new = malloc(sizeof(Node));
+    Item * new = malloc(sizeof(Item));
     new->phrase = malloc(sizeof(char) * 101);
     new->phrase = phrase;
     new->next = l->head;
@@ -17,7 +17,7 @@ void put_it_on(LinkedStack * l, char * phrase){
 
 char * take_it_out(LinkedStack * l){
     if(l->head == NULL) return "NULL";
-    Node * temp = l->head;
+    Item * temp = l->head;
     l->head = l->head->next;
     return temp->phrase;
 }
